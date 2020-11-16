@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DoorAlarm : MonoBehaviour
 {
-    [SerializeField] AudioSource _audioSource;
+    [SerializeField] private AudioSource _audioSource;
 
     private bool _inHouse;
     private float _directionIncreasingVolume = 0.01f;
@@ -36,7 +36,6 @@ public class DoorAlarm : MonoBehaviour
         {
             _directionIncreasingVolume *= -1;
         }
-        _audioSource.volume += _directionIncreasingVolume;
-
+        _audioSource.volume += Mathf.MoveTowards(_audioSource.volume, 1f, _directionIncreasingVolume);
     }
 }
